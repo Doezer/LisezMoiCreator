@@ -87,3 +87,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+.idea/
+original_b
+/Qt/LisezMoiCreator.pro.user
