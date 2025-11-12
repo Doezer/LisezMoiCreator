@@ -34,7 +34,7 @@ setup(
         "PyQt6>=6.0.0",
     ],
     entry_points={
-        "console_scripts": [
+        "gui_scripts": [
             "lisezmoi-creator=main:main",
         ],
     },

@@ -5,10 +5,9 @@ Provides a modern PyQt6 interface for creating README files
 
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QTabWidget,
-    QMenuBar, QMenu, QStatusBar, QToolBar, QMessageBox
+    QToolBar, QMessageBox
 )
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QAction, QIcon
+from PyQt6.QtGui import QAction
 
 from .tabs.general_info_tab import GeneralInfoTab
 from .tabs.prerequisites_tab import PrerequisitesTab
@@ -43,13 +42,20 @@ class MainWindow(QMainWindow):
         # Create tab widget
         self.tab_widget = QTabWidget()
         
-        # Add tabs
-        self.tab_widget.addTab(GeneralInfoTab(), "Infos générales")
-        self.tab_widget.addTab(PrerequisitesTab(), "Prérequis")
-        self.tab_widget.addTab(DescriptionTab(), "Description")
-        self.tab_widget.addTab(InstallationTab(), "Installation")
-        self.tab_widget.addTab(UninstallationTab(), "Désinstallation")
-        self.tab_widget.addTab(CreditsTab(), "Crédits")
+        # Add tabs - store references for future save/load functionality
+        self.general_info_tab = GeneralInfoTab()
+        self.prerequisites_tab = PrerequisitesTab()
+        self.description_tab = DescriptionTab()
+        self.installation_tab = InstallationTab()
+        self.uninstallation_tab = UninstallationTab()
+        self.credits_tab = CreditsTab()
+        
+        self.tab_widget.addTab(self.general_info_tab, "Infos générales")
+        self.tab_widget.addTab(self.prerequisites_tab, "Prérequis")
+        self.tab_widget.addTab(self.description_tab, "Description")
+        self.tab_widget.addTab(self.installation_tab, "Installation")
+        self.tab_widget.addTab(self.uninstallation_tab, "Désinstallation")
+        self.tab_widget.addTab(self.credits_tab, "Crédits")
         
         layout.addWidget(self.tab_widget)
     
